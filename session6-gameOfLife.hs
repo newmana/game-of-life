@@ -9,7 +9,7 @@ liveNeighbours (x, y) world = length $ concat $ do
 isAlive :: (Int, Int) -> [(Int, Int)] -> Bool
 isAlive (x, y) world 
     | (x, y) `elem` world = ln `elem` [2,3]
-	| otherwise = ln == 3
+    | otherwise = ln == 3
     where ln = (liveNeighbours (x,y) world)
 
 minX world = (minimum $ fst $ unzip world) - 1
