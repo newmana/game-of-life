@@ -22,13 +22,8 @@ writeAt :: Pos -> String -> IO ()
 writeAt pos xs = do goto pos
                     putStr xs
 
-seqn :: [IO a] -> IO ()
-seqn []     = return ()
-seqn (a:as) = do a
-                 seqn as
-
 showCells :: Board -> IO ()
-showCells b = seqn [writeAt p "O" | p <- b]
+showCells b = sequence_ [writeAt p "O" | p <- b]
 
 isAlive :: Board -> Pos -> Bool
 isAlive b p = elem p b
@@ -73,3 +68,6 @@ life b = do
 
 glider :: Board
 glider = [(4,2), (2,3), (4,3), (3,4), (4,4)]
+
+gliderPlus :: [(Int, Int)]
+gliderPlus = [(5,2), (3,3), (5,3), (4,4), (5,4), (1,1), (2,1), (1,2), (1,3)]
