@@ -1,3 +1,6 @@
+--
+-- Adapted from "Programming in Haskell" by Graham Hutton
+--
 import Control.Concurrent
 
 width :: Int
@@ -38,9 +41,9 @@ wrap (x, y) = (((x - 1) `mod` width) + 1, ((y - 1) `mod` height) + 1)
 
 neighbours :: Pos -> [Pos]
 neighbours (x, y) = map wrap [(x - 1, y - 1), (x, y - 1),
-							  (x + 1, y - 1), (x - 1, y),
-							  (x + 1, y), (x - 1, y + 1),
-							  (x, y + 1), (x + 1, y + 1)]
+                              (x + 1, y - 1), (x - 1, y),
+                              (x + 1, y), (x - 1, y + 1),
+                              (x, y + 1), (x + 1, y + 1)]
 
 liveNeighbours :: Board -> Pos -> Int
 liveNeighbours b = length . filter (isAlive b) . neighbours
